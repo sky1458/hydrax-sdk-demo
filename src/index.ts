@@ -1,11 +1,10 @@
-import axios from "axios";
 import { queryPair } from "./pair";
+import { SDKConfig } from "./index.d";
 
-function request(url: string) {
-  const req = axios(url);
+function HydraxSDK(url: string, options: SDKConfig, errorHandler: () => null) {
   return {
-    queryPair: () => queryPair(req),
+    queryPair: () => queryPair(url, options, errorHandler),
   };
 }
 
-function queryMarkets() {}
+export default HydraxSDK;
