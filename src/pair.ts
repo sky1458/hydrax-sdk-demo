@@ -5,6 +5,6 @@ export async function queryPair(
   options: SDKConfig,
   errorHandler?: ErrorHandler
 ) {
-  const response = request();
+  const response = request(url, options);
   return {};
 }
