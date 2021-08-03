@@ -8,7 +8,7 @@
     "prepare": "husky install"
   },
   "publishConfig": {
-    "@sky1458:registry": "https://npm.pkg.github.com"
+    "sky1458:registry": "https://npm.pkg.github.com"
   },
   "author": "Panda",
   "license": "MIT",
