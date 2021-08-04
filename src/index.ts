@@ -1,9 +1,10 @@
 import { queryPair } from "./pair";
-import { SDKConfig } from "./index.d";
+import { SDKConfig, ErrorHandler } from "./index.d";
 
-function HydraxSDK(url: string, options: SDKConfig, errorHandler: () => null) {
+function HydraxSDK(token: string, user_id: string) {
   return {
-    queryPair: () => queryPair(url, options, errorHandler),
+    queryPair: (url: string, options: SDKConfig, errorHandler: ErrorHandler) =>
+      queryPair(url, options, errorHandler),
   };
 }
 
