@@ -1,10 +1,24 @@
 import { queryPair } from "./pair";
-import { SDKConfig, ErrorHandler } from "./index.d";
+import { SDKConfig, ErrorHandler, OtherParams } from "./index.d";
+import request from "./utils/request";
 
-function HydraxSDK(token: string, user_id: string) {
+export function httpRequest(url: string, params: any) {
+  return (otherParams: OtherParams, errorHandler = () => null) =>
+    request(
+      url,
+      {
+        params: {
+          ...otherParams,
+          ...params,
+        },
+      },
+      errorHandler
+    );
+}
+
+function HydraxSDK(url: string, token: string, user_id: string) {
   return {
-    queryPair: (url: string, options: SDKConfig, errorHandler: ErrorHandler) =>
-      queryPair(url, options, errorHandler),
+    queryPair: queryPair,
   };
 }
 
