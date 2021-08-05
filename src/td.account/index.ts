@@ -1,6 +1,8 @@
 import { AxiosRequestConfig } from "axios";
 import request from '../utils/request';
 
+import { getConfig } from "../utils/setConfig";
+
 /**
  * ### Meaning of common parameters
  * 
@@ -69,5 +71,7 @@ const getBalances = async (
   return data;
 };
 
+const testConfig = () => getConfig()
 
-export { getCryptoAddress, getBalances }
+
+export { getCryptoAddress, getBalances, testConfig }
