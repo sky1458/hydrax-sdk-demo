@@ -4,16 +4,12 @@ import { getCryptoAddress, getBalances } from './td.account';
 
 import { AxiosRequestConfig } from 'axios';
 
-import { setConfig } from "./utils/setConfig";
-
 function HydraxSDK(sdkConfig: SDKConfig) {
-  setConfig(sdkConfig)
-
   return {
     getCryptoAddress: (
       options?: AxiosRequestConfig,
       errorHandler: ErrorHandler = () => null
-    ) => getCryptoAddress(options, errorHandler),
+    ) => getCryptoAddress(sdkConfig, options, errorHandler),
     getBalances: (
       options?: AxiosRequestConfig,
       errorHandler: ErrorHandler = () => null
@@ -22,8 +18,6 @@ function HydraxSDK(sdkConfig: SDKConfig) {
       options?: AxiosRequestConfig,
       errorHandler: ErrorHandler = () => null
     ) => notif(sdkConfig, options, errorHandler),
-
-
   };
 }
 

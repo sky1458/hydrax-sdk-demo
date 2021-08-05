@@ -1,9 +1,6 @@
 import { AxiosRequestConfig } from "axios";
 import request from '../utils/request';
 
-import { getConfig } from "../utils/setConfig";
-
-const sdkConfig = getConfig()
 /**
  * ### Meaning of common parameters
  * 
@@ -18,11 +15,11 @@ const sdkConfig = getConfig()
  * @returns a string of encrypted addresses
  */
 const getCryptoAddress = async (
+  sdkConfig: SDKConfig,
   _: AxiosRequestConfig,
   errorHandler: ErrorHandler
 ) => {
-
-  const { token = '', user_id = '', url = '', } = sdkConfig as SDKConfig;
+  const { token = '', user_id = '', url = '', } = sdkConfig;
   const opt: AxiosRequestConfig = {
     method: 'POST',
     data: {
@@ -58,8 +55,6 @@ const getBalances = async (
   const opt: AxiosRequestConfig = {
     method: 'POST',
     data: {
-      id: Date.now(),
-      method: 'execute',
       params: [
         'td.account',
         'get_balances',
@@ -72,7 +67,5 @@ const getBalances = async (
   return data;
 };
 
-const testConfig = () => getConfig()
 
-
-export { getCryptoAddress, getBalances, testConfig }
+export { getCryptoAddress, getBalances }
