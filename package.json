@@ -1,6 +1,6 @@
 {
   "name": "@sky1458/hydrax-sdk-demo",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "description": "ts demo",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
