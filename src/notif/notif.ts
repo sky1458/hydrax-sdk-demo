@@ -35,6 +35,9 @@ export async function notif( optionsDefault?: SDKConfig, options:AxiosRequestCon
   }
   
   const response = await request(url, optionsData, errorHandler);
-
-  return response;
+  if(!response.data.error){
+    return { data:response.data.result[0], total:response.data.result[1]}  
+  }else{
+    return { error: response.data.error}
+  }
 }
