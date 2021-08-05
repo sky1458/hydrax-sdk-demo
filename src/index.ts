@@ -1,6 +1,6 @@
 import { notif } from './notif/notif';
 
-import { getCryptoAddress, getBalances, testConfig } from './td.account';
+import { getCryptoAddress, getBalances } from './td.account';
 
 import { AxiosRequestConfig } from 'axios';
 
@@ -13,14 +13,11 @@ function HydraxSDK(sdkConfig: SDKConfig) {
     getCryptoAddress: (
       options?: AxiosRequestConfig,
       errorHandler: ErrorHandler = () => null
-    ) => getCryptoAddress(sdkConfig, options, errorHandler),
+    ) => getCryptoAddress(options, errorHandler),
     getBalances: (
       options?: AxiosRequestConfig,
       errorHandler: ErrorHandler = () => null
     ) => getBalances(sdkConfig, options, errorHandler),
-
-    testConfig: () => testConfig(),
-    
     getnotif: (
       options?: AxiosRequestConfig,
       errorHandler: ErrorHandler = () => null
