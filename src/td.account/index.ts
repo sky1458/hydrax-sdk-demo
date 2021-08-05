@@ -1,12 +1,24 @@
-import request from '../utils/request';
 import { AxiosRequestConfig } from "axios";
+import request from '../utils/request';
+
+/** Meaning of common parameters
+ * 
+ * @param sdkConfig initial user infomation
+ * @param _ users do not need to pass in configuration
+ * @param errorHandler behavior when an error occurs
+ */
+
+/**
+ * 
+ * @returns a string of encrypted addresses
+ */
 const getCryptoAddress = async (
   sdkConfig: SDKConfig,
   _: AxiosRequestConfig,
   errorHandler: ErrorHandler
 ) => {
   const { token = '', user_id = '', url = '', } = sdkConfig;
-  const opt = {
+  const opt: AxiosRequestConfig = {
     method: 'POST',
     data: {
       id: Date.now(),
@@ -23,9 +35,36 @@ const getCryptoAddress = async (
       ],
     },
   };
-  const data = await request(url, (opt as AxiosRequestConfig), errorHandler);
+  const data = await request(url, opt, errorHandler);
+  return data;
+};
+
+/**
+ * 
+ * @returns user current balance
+ */
+const getBalances = async (
+  sdkConfig: SDKConfig,
+  _: AxiosRequestConfig,
+  errorHandler: ErrorHandler
+) => {
+  const { user_id = '', url = '', } = sdkConfig;
+  const opt: AxiosRequestConfig = {
+    method: 'POST',
+    data: {
+      id: Date.now(),
+      method: 'execute',
+      params: [
+        'td.account',
+        'get_balances',
+        [],
+        { user_id: user_id, },
+      ],
+    },
+  };
+  const data = await request(url, opt, errorHandler);
   return data;
 };
 
 
-export { getCryptoAddress }
+export { getCryptoAddress, getBalances }
