@@ -3,6 +3,7 @@ import request from '../utils/request';
 
 import { getConfig } from "../utils/setConfig";
 
+const sdkConfig = getConfig()
 /**
  * ### Meaning of common parameters
  * 
@@ -20,7 +21,7 @@ const getCryptoAddress = async (
   _: AxiosRequestConfig,
   errorHandler: ErrorHandler
 ) => {
-  const sdkConfig = getConfig()
+
   const { token = '', user_id = '', url = '', } = sdkConfig as SDKConfig;
   const opt: AxiosRequestConfig = {
     method: 'POST',
