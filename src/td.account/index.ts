@@ -1,7 +1,8 @@
 import { AxiosRequestConfig } from "axios";
 import request from '../utils/request';
 
-/** Meaning of common parameters
+/**
+ * ### Meaning of common parameters
  * 
  * @param sdkConfig initial user infomation
  * @param _ users do not need to pass in configuration
@@ -10,6 +11,7 @@ import request from '../utils/request';
 
 /**
  * 
+ * Get a string of encrypted addresses
  * @returns a string of encrypted addresses
  */
 const getCryptoAddress = async (
@@ -41,7 +43,8 @@ const getCryptoAddress = async (
 
 /**
  * 
- * @returns user current balance
+ * Get user current balances
+ * @returns user current balances
  */
 const getBalances = async (
   sdkConfig: SDKConfig,
