@@ -7,7 +7,13 @@ function checkStatus(response: AxiosResponse) {
   const error = new Error(response.statusText);
   throw error;
 }
-
+/**
+ * ### Example (es module)
+ * @param url - backend api url
+ * @param options - Axios Options
+ * @param errorHandler - http error handler function
+ * @returns - Promise object
+ */
 function request(
   url: string,
   options: AxiosRequestConfig,
