@@ -16,7 +16,7 @@ function HydraxSDK(sdkConfig: SDKConfig) {
       errorHandler: ErrorHandler = () => null
     ) => getBalances(sdkConfig, options, errorHandler),
     getUserInfo: (
-      userInfo: string[], errorHandle?: ErrorHandler
+      userInfo?: string[], errorHandle?: ErrorHandler
     ) => getUserInfo(sdkConfig, userInfo, errorHandle),
     getnotif: (
       options?: AxiosRequestConfig,
