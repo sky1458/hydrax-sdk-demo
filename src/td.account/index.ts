@@ -17,11 +17,11 @@ import { getConfig } from "../utils/setConfig";
  * @returns a string of encrypted addresses
  */
 const getCryptoAddress = async (
-  sdkConfig: SDKConfig,
   _: AxiosRequestConfig,
   errorHandler: ErrorHandler
 ) => {
-  const { token = '', user_id = '', url = '', } = sdkConfig;
+  const sdkConfig = getConfig()
+  const { token = '', user_id = '', url = '', } = sdkConfig as SDKConfig;
   const opt: AxiosRequestConfig = {
     method: 'POST',
     data: {
