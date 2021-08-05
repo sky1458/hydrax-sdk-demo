@@ -51,15 +51,18 @@ const getBalances = async (
   _: AxiosRequestConfig,
   errorHandler: ErrorHandler
 ) => {
-  const { user_id = '', url = '', } = sdkConfig;
+  const { token, user_id = '', url = '', } = sdkConfig;
   const opt: AxiosRequestConfig = {
     method: 'POST',
     data: {
+      id: Date.now(),
+      method: "execute",
       params: [
         'td.account',
         'get_balances',
         [],
         { user_id: user_id, },
+        { token: token },
       ],
     },
   };
@@ -67,5 +70,39 @@ const getBalances = async (
   return data;
 };
 
+/**
+ * 
+ * @param uesrInfo parameters about user information
+ * @returns data obtained through 'optionsData'
+ */
+const getUserInfo = async (
+  sdkConfig: SDKConfig,
+  uesrInfo: string[],
+  errorHandler: ErrorHandler
+) => {
 
-export { getCryptoAddress, getBalances }
+  const { token = '', user_id = '', url = '', } = sdkConfig;
+  const requestBody = {
+    id: Date.now(),
+    method: 'execute',
+    params: [
+      "td.account",
+      "search_read",
+      [
+        [['user_id', '=', user_id]],
+        uesrInfo ?? ['name', 'email', 'phone', 'enable_quick_order']
+      ],
+      {},
+      { "user_id": user_id, "token": token }
+    ],
+  }
+  const options: AxiosRequestConfig = {
+    method: 'POST',
+    data: requestBody,
+  };
+  const data = await request(url, options, errorHandler);
+  return data;
+};
+
+
+export { getCryptoAddress, getBalances, getUserInfo }
