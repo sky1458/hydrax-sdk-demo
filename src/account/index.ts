@@ -38,7 +38,7 @@ const getCryptoAddress = async (
   errorHandler: ErrorHandler
 ) => {
   const { token = '', user_id = '', url = '' } = sdkConfig;
-  const requestBody = {
+  const requestBody = setRequestBody({
     id: Date.now(),
     method: 'execute',
     params: [
@@ -51,7 +51,7 @@ const getCryptoAddress = async (
         token: token,
       },
     ],
-  }
+  })
   const opt: AxiosRequestConfig = {
     method: 'POST',
     data: requestBody,
@@ -72,7 +72,7 @@ const getBalances = async (
   errorHandler: ErrorHandler
 ) => {
   const { token, user_id = '', url = '' } = sdkConfig;
-  const requestBody = {
+  const requestBody = setRequestBody({
     id: Date.now(),
     method: 'execute',
     params: [
@@ -82,7 +82,7 @@ const getBalances = async (
       { user_id: user_id },
       { token: token },
     ],
-  }
+  })
   const opt: AxiosRequestConfig = {
     method: 'POST',
     data: requestBody,
@@ -117,7 +117,6 @@ const getUserInfo = async (
       { user_id: user_id, token: token },
     ],
   })
-  // const xd = 
   const opt: AxiosRequestConfig = {
     method: 'POST',
     data: requestBody,
