@@ -1,6 +1,9 @@
 import { AxiosRequestConfig } from 'axios';
 import request from '../utils/request';
 
+type IRequestBody<T, U, Z> = {
+  [type: string]: T | U | Z
+}
 /**
  * ### Meaning of common parameters
  *
@@ -20,7 +23,7 @@ const getCryptoAddress = async (
   errorHandler: ErrorHandler
 ) => {
   const { token = '', user_id = '', url = '' } = sdkConfig;
-  const requestBody = {
+  const requestBody: IRequestBody<string, number, any[]> = {
     id: Date.now(),
     method: 'execute',
     params: [
@@ -43,7 +46,6 @@ const getCryptoAddress = async (
 };
 
 /**
- *
  * Get user current balances
  * 
  * @returns user current balances
@@ -54,7 +56,7 @@ const getBalances = async (
   errorHandler: ErrorHandler
 ) => {
   const { token, user_id = '', url = '' } = sdkConfig;
-  const requestBody = {
+  const requestBody: IRequestBody<string, number, any[]> = {
     id: Date.now(),
     method: 'execute',
     params: [
@@ -85,7 +87,7 @@ const getUserInfo = async (
   errorHandler: ErrorHandler
 ) => {
   const { token = '', user_id = '', url = '' } = sdkConfig;
-  const requestBody = {
+  const requestBody: IRequestBody<string, number, any[]> = {
     id: Date.now(),
     method: 'execute',
     params: [
