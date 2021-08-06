@@ -4,7 +4,6 @@ import { getCryptoAddress, getBalances, getUserInfo } from './account';
 import { getAddress } from './address/getAddress';
 import { notif } from './notif/notif';
 
-
 function HydraxSDK(sdkConfig: SDKConfig) {
   return {
     getCryptoAddress: (
