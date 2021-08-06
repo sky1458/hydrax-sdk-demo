@@ -64,7 +64,7 @@ const getBalances = async (
       'get_balances',
       [],
       { user_id: user_id },
-      { token: token },
+      { user_id: user_id, token: token },
     ],
   }
   const opt: AxiosRequestConfig = {
