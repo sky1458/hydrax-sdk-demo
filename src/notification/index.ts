@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 
-import request from '../utils/request';
+import request from '../lib/request';
 
 /**
   * 
@@ -9,13 +9,13 @@ import request from '../utils/request';
    @returns return object
  */
 
-export async function notif(
+export async function queryNotificationList(
   optionsDefault?: SDKConfig,
   options: AxiosRequestConfig = {},
   errorHandler?: ErrorHandler
 ) {
-  const { token, user_id, url } = optionsDefault;
-  const cond = [['user_id', '=', user_id]];
+  const { token, userId, url } = optionsDefault;
+  const cond = [['user_id', '=', userId]];
   const fields = ['time', 'title', 'state', 'data'];
   const { params: pms = {} } = options;
   const { limit = 10, offset = 10 } = pms;
@@ -25,7 +25,7 @@ export async function notif(
     [cond, fields],
     { order: 'time desc', count: true, limit, offset },
     {
-      user_id: user_id,
+      user_id: userId,
       token: token,
     },
   ];

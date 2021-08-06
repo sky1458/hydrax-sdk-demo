@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import request from '../utils/request';
+import request from '../lib/request';
 
 /**
  * ### Meaning of common parameters
@@ -19,7 +19,7 @@ const getCryptoAddress = async (
   _: AxiosRequestConfig,
   errorHandler: ErrorHandler
 ) => {
-  const { token = '', user_id = '', url = '' } = sdkConfig;
+  const { token = '', userId = '', url = '' } = sdkConfig;
   const opt: AxiosRequestConfig = {
     method: 'POST',
     data: {
@@ -28,10 +28,10 @@ const getCryptoAddress = async (
       params: [
         'td.account',
         'search_read_path',
-        [['user_id', '=', user_id], ['crypto_addr']],
+        [['user_id', '=', userId], ['crypto_addr']],
         {},
         {
-          user_id: user_id,
+          user_id: userId,
           token: token,
         },
       ],
@@ -51,7 +51,7 @@ const getBalances = async (
   _: AxiosRequestConfig,
   errorHandler: ErrorHandler
 ) => {
-  const { token, user_id = '', url = '' } = sdkConfig;
+  const { token, userId = '', url = '' } = sdkConfig;
   const opt: AxiosRequestConfig = {
     method: 'POST',
     data: {
@@ -61,7 +61,7 @@ const getBalances = async (
         'td.account',
         'get_balances',
         [],
-        { user_id: user_id },
+        { user_id: userId },
         { token: token },
       ],
     },
@@ -80,7 +80,7 @@ const getUserInfo = async (
   uesrInfo: string[],
   errorHandler: ErrorHandler
 ) => {
-  const { token = '', user_id = '', url = '' } = sdkConfig;
+  const { token = '', userId = '', url = '' } = sdkConfig;
   const requestBody = {
     id: Date.now(),
     method: 'execute',
@@ -88,11 +88,11 @@ const getUserInfo = async (
       'td.account',
       'search_read',
       [
-        [['user_id', '=', user_id]],
+        [['user_id', '=', userId]],
         uesrInfo ?? ['name', 'email', 'phone', 'enable_quick_order'],
       ],
       {},
-      { user_id: user_id, token: token },
+      { user_id: userId, token: token },
     ],
   };
   const options: AxiosRequestConfig = {

@@ -1,8 +1,8 @@
 import { AxiosRequestConfig } from 'axios';
 
-import { getCryptoAddress, getBalances, getUserInfo } from './td.account';
+import { getCryptoAddress, getBalances, getUserInfo } from './account';
 import { getAddress } from './address/getAddress';
-import { notif } from './notif/notif';
+import { queryNotificationList } from './notification';
 
 function HydraxSDK(sdkConfig: SDKConfig) {
   return {
@@ -16,15 +16,14 @@ function HydraxSDK(sdkConfig: SDKConfig) {
     ) => getBalances(sdkConfig, options, errorHandler),
     getUserInfo: (userInfo?: string[], errorHandle?: ErrorHandler) =>
       getUserInfo(sdkConfig, userInfo, errorHandle),
-    getnotif: (
+    getNotificationList: (
       options?: AxiosRequestConfig,
       errorHandler: ErrorHandler = () => null
-    ) => notif(sdkConfig, options, errorHandler),
+    ) => queryNotificationList(sdkConfig, options, errorHandler),
     getAddress: (
       options?: AxiosRequestConfig,
       errorHandler: ErrorHandler = () => null
     ) => getAddress(sdkConfig, options, errorHandler),
   };
 }
-
 export default HydraxSDK;

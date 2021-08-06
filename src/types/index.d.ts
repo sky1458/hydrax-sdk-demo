@@ -10,9 +10,9 @@ declare interface ErrorHandler {
 
 declare interface SDKConfig {
   url?: string;
-  user_id?: string;
+  userId?: string;
   token?: string;
-  company_id?: string;
+  companyId?: string;
   database?: string;
   usePublic?: boolean;
 }
