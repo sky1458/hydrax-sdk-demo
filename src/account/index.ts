@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import request from '../lib/request';
 
+<<<<<<< HEAD
 /**
  *
  * @param id Date.now()
@@ -19,6 +20,11 @@ import request from '../lib/request';
 //   return { id, method, params };
 // };
 
+=======
+type IRequestBody<T, U, Z> = {
+  [type: string]: T | U | Z
+}
+>>>>>>> ca472f0d77088a82c039177e04a1442729fac478
 /**
  * ### Meaning of common parameters
  *
@@ -37,7 +43,25 @@ const getCryptoAddress = async (
   _: AxiosRequestConfig,
   errorHandler: ErrorHandler
 ) => {
+<<<<<<< HEAD
   const { token = '', userId = '', url = '' } = sdkConfig;
+=======
+  const { token = '', user_id = '', url = '' } = sdkConfig;
+  const requestBody: IRequestBody<string, number, any[]> = {
+    id: Date.now(),
+    method: 'execute',
+    params: [
+      'td.account',
+      'search_read_path',
+      [['user_id', '=', user_id], ['crypto_addr']],
+      {},
+      {
+        user_id: user_id,
+        token: token,
+      },
+    ],
+  }
+>>>>>>> ca472f0d77088a82c039177e04a1442729fac478
   const opt: AxiosRequestConfig = {
     method: 'POST',
     data: {
@@ -60,7 +84,6 @@ const getCryptoAddress = async (
 };
 
 /**
- *
  * Get user current balances
  *
  * @returns user current balances
@@ -70,7 +93,22 @@ const getBalances = async (
   _: AxiosRequestConfig,
   errorHandler: ErrorHandler
 ) => {
+<<<<<<< HEAD
   const { token, userId = '', url = '' } = sdkConfig;
+=======
+  const { token, user_id = '', url = '' } = sdkConfig;
+  const requestBody: IRequestBody<string, number, any[]> = {
+    id: Date.now(),
+    method: 'execute',
+    params: [
+      'td.account',
+      'get_balances',
+      [],
+      { user_id: user_id },
+      { user_id: user_id, token: token },
+    ],
+  }
+>>>>>>> ca472f0d77088a82c039177e04a1442729fac478
   const opt: AxiosRequestConfig = {
     method: 'POST',
     data: {
@@ -100,8 +138,13 @@ const getUserInfo = async (
   options: { userInfo?: string[] },
   errorHandler: ErrorHandler
 ) => {
+<<<<<<< HEAD
   const { token = '', userId = '', url = '' } = sdkConfig;
   const requestBody = {
+=======
+  const { token = '', user_id = '', url = '' } = sdkConfig;
+  const requestBody: IRequestBody<string, number, any[]> = {
+>>>>>>> ca472f0d77088a82c039177e04a1442729fac478
     id: Date.now(),
     method: 'execute',
     params: [
@@ -114,7 +157,11 @@ const getUserInfo = async (
       {},
       { user_id: userId, token: token },
     ],
+<<<<<<< HEAD
   };
+=======
+  }
+>>>>>>> ca472f0d77088a82c039177e04a1442729fac478
   const opt: AxiosRequestConfig = {
     method: 'POST',
     data: requestBody,
@@ -123,4 +170,8 @@ const getUserInfo = async (
   return data;
 };
 
+<<<<<<< HEAD
 export { getCryptoAddress, getBalances, getUserInfo };
+=======
+export { getCryptoAddress, getBalances, getUserInfo }
+>>>>>>> ca472f0d77088a82c039177e04a1442729fac478
