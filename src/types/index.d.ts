@@ -16,3 +16,8 @@ declare interface SDKConfig {
   database?: string;
   usePublic?: boolean;
 }
+
+declare interface PgaeInfoParams {
+  limit?: number;
+  offset?: number;
+}

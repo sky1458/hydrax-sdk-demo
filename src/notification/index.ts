@@ -9,17 +9,26 @@ import request from '../lib/request';
    @returns return object
  */
 
+interface ResponseData {
+  list: any[];
+  total: number;
+}
+interface CustomResponse {
+  success: boolean;
+  data: ResponseData;
+  message: string;
+}
+
 export async function queryNotificationList(
   optionsDefault?: SDKConfig,
-  options: AxiosRequestConfig = {},
+  params: PgaeInfoParams = {},
   errorHandler?: ErrorHandler
-) {
+): Promise<CustomResponse> {
   const { token, userId, url } = optionsDefault;
   const cond = [['user_id', '=', userId]];
   const fields = ['time', 'title', 'state', 'data'];
-  const { params: pms = {} } = options;
-  const { limit = 10, offset = 10 } = pms;
-  const params = [
+  const { limit = 10, offset = 10 } = params;
+  const formatParams = [
     'notif',
     'search_read_path',
     [cond, fields],
@@ -34,14 +43,22 @@ export async function queryNotificationList(
     data: {
       id: new Date().getTime(),
       method: 'execute',
-      params,
+      params: formatParams,
     },
   };
 
   const response = await request(url, optionsData, errorHandler);
-  if (!response.data.error) {
-    return { data: response.data.result[0], total: response.data.result[1] };
-  } else {
-    return { error: response.data.error };
+  const { error = '', result = [] } = response.data;
+  const [data, total] = result;
+  if (!error) {
+    return {
+      success: !!error,
+      data: {
+        list: data,
+        total: total,
+      },
+      message: error,
+    };
   }
+  return { success: !!error, data: null, message: error };
 }
