@@ -21,9 +21,9 @@ type IReturnData = {
  * @returns correct data format
  */
 const returnData = (res: IReturnData) => ({
-  success: Boolean(res?.data?.error),
-  message: res?.data?.error ?? "",
-  data: res?.data?.result,
+  success: Boolean(!(res?.data?.error)),
+  message: res?.data?.error || "",
+  data: res?.data?.result || null,
 })
 
 /**
@@ -125,7 +125,7 @@ const getUserInfo = async (
       'search_read',
       [
         [['user_id', '=', userId]],
-        options?.userInfo ?? ['name', 'email', 'phone', 'enable_quick_order'],
+        options?.userInfo || ['name', 'email', 'phone', 'enable_quick_order'],
       ],
       {},
       { user_id: userId, token: token },
