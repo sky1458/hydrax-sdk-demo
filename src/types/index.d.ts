@@ -21,3 +21,14 @@ declare interface PgaeInfoParams {
   limit?: number;
   offset?: number;
 }
+
+declare interface ResponseData {
+  list: any[];
+  total: number;
+}
+
+declare interface CustomResponse {
+  success: boolean;
+  data: ResponseData;
+  message: string;
+}
