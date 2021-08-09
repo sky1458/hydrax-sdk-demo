@@ -1,7 +1,7 @@
 import { getCryptoAddress, getBalances, getUserInfo } from './account';
 import { queryNotificationList } from './notification';
 
-function HydraxSDK(config: SDKConfig) {
+function HydraxSDK(config: SDKConfig): any {
   return {
     getNotificationList: (
       params?: PgaeInfoParams,
