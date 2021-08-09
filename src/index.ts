@@ -21,14 +21,6 @@ function HydraxSDK(config: SDKConfig) {
       params?: { userInfo: string[] },
       errorHandle?: ErrorHandler
     ) => getUserInfo(config, params, errorHandle),
-    getNotificationList: (
-      options?: AxiosRequestConfig,
-      errorHandler: ErrorHandler = () => null
-    ) => queryNotificationList(sdkConfig, options, errorHandler),
-    getAddress: (
-      options?: AxiosRequestConfig,
-      errorHandler: ErrorHandler = () => null
-    ) => getAddress(sdkConfig, options, errorHandler),
   };
 }
 export default HydraxSDK;
