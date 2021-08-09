@@ -21,6 +21,7 @@ type IReturnData = {
  * @returns correct data format
  */
 const returnData = (res: IReturnData) => ({
+  total: res,
   success: Boolean(!(res?.data?.error)),
   message: res?.data?.error || "",
   data: res?.data?.result || null,
