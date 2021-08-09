@@ -9,16 +9,6 @@ import request from '../lib/request';
    @returns return object
  */
 
-interface ResponseData {
-  list: any[];
-  total: number;
-}
-interface CustomResponse {
-  success: boolean;
-  data: ResponseData;
-  message: string;
-}
-
 export async function queryNotificationList(
   optionsDefault?: SDKConfig,
   params: PgaeInfoParams = {},
