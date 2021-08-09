@@ -1,30 +1,31 @@
 import { AxiosRequestConfig } from 'axios';
 import request from '../lib/request';
 
-<<<<<<< HEAD
-/**
- *
- * @param id Date.now()
- * @param method the method of rpc_execute
- * @param params get parameters of data
- * @returns
- */
-
-// type IRequestBody = {
-//   id: number;
-//   method: string;
-//   params: any[];
-// };
-// const setRequestBody = (requestBodyConfig: IRequestBody) => {
-//   const { id, method, params } = requestBodyConfig;
-//   return { id, method, params };
-// };
-
-=======
 type IRequestBody<T, U, Z> = {
   [type: string]: T | U | Z
 }
->>>>>>> ca472f0d77088a82c039177e04a1442729fac478
+
+type IReturnData = {
+  data: {
+    error: {
+      message: string
+    },
+    result: any[]
+  }
+}
+
+/**
+ * Returns the correct data format
+ * 
+ * @param res response content
+ * @returns correct data format
+ */
+const returnData = (res: IReturnData) => ({
+  success: Boolean(!(res?.data?.error)),
+  message: res?.data?.error || "",
+  data: res?.data?.result || null,
+})
+
 /**
  * ### Meaning of common parameters
  *
@@ -40,47 +41,34 @@ type IRequestBody<T, U, Z> = {
  */
 const getCryptoAddress = async (
   sdkConfig: SDKConfig,
-  _: AxiosRequestConfig,
+  _: null,
   errorHandler: ErrorHandler
 ) => {
-<<<<<<< HEAD
   const { token = '', userId = '', url = '' } = sdkConfig;
-=======
-  const { token = '', user_id = '', url = '' } = sdkConfig;
   const requestBody: IRequestBody<string, number, any[]> = {
     id: Date.now(),
     method: 'execute',
     params: [
       'td.account',
       'search_read_path',
-      [['user_id', '=', user_id], ['crypto_addr']],
+      [['user_id', '=', userId], ['crypto_addr']],
       {},
       {
-        user_id: user_id,
+        user_id: userId,
         token: token,
       },
     ],
   }
->>>>>>> ca472f0d77088a82c039177e04a1442729fac478
   const opt: AxiosRequestConfig = {
     method: 'POST',
     data: {
       id: Date.now(),
       method: 'execute',
-      params: [
-        'td.account',
-        'search_read_path',
-        [['user_id', '=', userId], ['crypto_addr']],
-        {},
-        {
-          user_id: userId,
-          token: token,
-        },
-      ],
+      params: requestBody,
     },
   };
-  const data = await request(url, opt, errorHandler);
-  return data;
+  const response = await request(url, opt, errorHandler) as IReturnData;
+  return returnData(response)
 };
 
 /**
@@ -90,13 +78,10 @@ const getCryptoAddress = async (
  */
 const getBalances = async (
   sdkConfig: SDKConfig,
-  _: AxiosRequestConfig,
+  _: null,
   errorHandler: ErrorHandler
 ) => {
-<<<<<<< HEAD
   const { token, userId = '', url = '' } = sdkConfig;
-=======
-  const { token, user_id = '', url = '' } = sdkConfig;
   const requestBody: IRequestBody<string, number, any[]> = {
     id: Date.now(),
     method: 'execute',
@@ -104,27 +89,20 @@ const getBalances = async (
       'td.account',
       'get_balances',
       [],
-      { user_id: user_id },
-      { user_id: user_id, token: token },
+      { user_id: userId },
+      { user_id: userId, token: token },
     ],
   }
->>>>>>> ca472f0d77088a82c039177e04a1442729fac478
   const opt: AxiosRequestConfig = {
     method: 'POST',
     data: {
       id: Date.now(),
       method: 'execute',
-      params: [
-        'td.account',
-        'get_balances',
-        [],
-        { user_id: userId },
-        { token: token },
-      ],
+      params: requestBody,
     },
   };
-  const data = await request(url, opt, errorHandler);
-  return data;
+  const response = await request(url, opt, errorHandler) as IReturnData;
+  return returnData(response)
 };
 
 /**
@@ -138,13 +116,8 @@ const getUserInfo = async (
   options: { userInfo?: string[] },
   errorHandler: ErrorHandler
 ) => {
-<<<<<<< HEAD
   const { token = '', userId = '', url = '' } = sdkConfig;
-  const requestBody = {
-=======
-  const { token = '', user_id = '', url = '' } = sdkConfig;
   const requestBody: IRequestBody<string, number, any[]> = {
->>>>>>> ca472f0d77088a82c039177e04a1442729fac478
     id: Date.now(),
     method: 'execute',
     params: [
@@ -152,26 +125,18 @@ const getUserInfo = async (
       'search_read',
       [
         [['user_id', '=', userId]],
-        options?.userInfo ?? ['name', 'email', 'phone', 'enable_quick_order'],
+        options?.userInfo || ['name', 'email', 'phone', 'enable_quick_order'],
       ],
       {},
       { user_id: userId, token: token },
     ],
-<<<<<<< HEAD
-  };
-=======
   }
->>>>>>> ca472f0d77088a82c039177e04a1442729fac478
   const opt: AxiosRequestConfig = {
     method: 'POST',
     data: requestBody,
   };
-  const data = await request(url, opt, errorHandler);
-  return data;
+  const response = await request(url, opt, errorHandler) as IReturnData;
+  return returnData(response)
 };
 
-<<<<<<< HEAD
-export { getCryptoAddress, getBalances, getUserInfo };
-=======
 export { getCryptoAddress, getBalances, getUserInfo }
->>>>>>> ca472f0d77088a82c039177e04a1442729fac478
