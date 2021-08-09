@@ -22,7 +22,7 @@ type IReturnData = {
  */
 const returnData = (res: IReturnData) => ({
   success: Boolean(!(res?.data?.error)),
-  message: res?.data?.error || "",
+  message: res?.data?.error?.message || "",
   data: res?.data?.result || null,
 })
 
