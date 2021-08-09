@@ -21,7 +21,6 @@ type IReturnData = {
  * @returns correct data format
  */
 const returnData = (res: IReturnData) => ({
-  total: res,
   success: Boolean(!(res?.data?.error)),
   message: res?.data?.error || "",
   data: res?.data?.result || null,
@@ -62,11 +61,7 @@ const getCryptoAddress = async (
   }
   const opt: AxiosRequestConfig = {
     method: 'POST',
-    data: {
-      id: Date.now(),
-      method: 'execute',
-      params: requestBody,
-    },
+    data: requestBody,
   };
   const response = await request(url, opt, errorHandler) as IReturnData;
   return returnData(response)
@@ -96,11 +91,7 @@ const getBalances = async (
   }
   const opt: AxiosRequestConfig = {
     method: 'POST',
-    data: {
-      id: Date.now(),
-      method: 'execute',
-      params: requestBody,
-    },
+    data: requestBody,
   };
   const response = await request(url, opt, errorHandler) as IReturnData;
   return returnData(response)
