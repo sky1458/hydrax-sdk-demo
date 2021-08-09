@@ -1,1 +1,1 @@
-# hydrax-sdk
+# exchange-generic-js-sdk
