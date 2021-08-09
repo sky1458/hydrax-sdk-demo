@@ -41,7 +41,7 @@ const returnData = (res: IReturnData) => ({
  */
 const getCryptoAddress = async (
   sdkConfig: SDKConfig,
-  _: AxiosRequestConfig,
+  _: null,
   errorHandler: ErrorHandler
 ) => {
   const { token = '', userId = '', url = '' } = sdkConfig;
@@ -78,7 +78,7 @@ const getCryptoAddress = async (
  */
 const getBalances = async (
   sdkConfig: SDKConfig,
-  _: AxiosRequestConfig,
+  _: null,
   errorHandler: ErrorHandler
 ) => {
   const { token, userId = '', url = '' } = sdkConfig;
