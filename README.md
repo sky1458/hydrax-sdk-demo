@@ -5,7 +5,7 @@ http request sdk
 ### example
 
 ```js
-import SDK from '@sky1458/hydrax-sdk-demo';
+import SDK from 'exchange-generic-js-sdk';
 
 const initialSDK = SDK({
   url: 'http://request.api.com',
