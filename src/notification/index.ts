@@ -11,7 +11,7 @@ import request from '../lib/request';
 
 export async function queryNotificationList(
   optionsDefault?: SDKConfig,
-  params: PgaeInfoParams = {},
+  params: PageInfoParams = {},
   errorHandler?: ErrorHandler
 ): Promise<CustomResponse> {
   const { token, userId, url } = optionsDefault;
@@ -50,5 +50,5 @@ export async function queryNotificationList(
       message: error,
     };
   }
-  return { success: !!error, data: null, message: error };
+  return { success: !!error, data: null, message: 'success' };
 }

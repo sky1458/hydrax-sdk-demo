@@ -17,7 +17,7 @@ declare interface SDKConfig {
   usePublic?: boolean;
 }
 
-declare interface PgaeInfoParams {
+declare interface PageInfoParams {
   limit?: number;
   offset?: number;
 }
