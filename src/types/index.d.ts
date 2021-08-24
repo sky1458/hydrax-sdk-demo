@@ -32,3 +32,8 @@ declare interface CustomResponse {
   data: ResponseData;
   message: string;
 }
+
+declare interface LoginInfo {
+  username: string;
+  password: string;
+}

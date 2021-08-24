@@ -22,6 +22,7 @@ function HydraxSDK(config: SDKConfig): any {
     ) => getUserInfo(config, params, errorHandle),
   };
 }
+
 export default HydraxSDK;
 
 
