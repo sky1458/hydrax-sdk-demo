@@ -1,28 +1,8 @@
-import { getCryptoAddress, getBalances, getUserInfo } from './account';
-import { queryNotificationList } from './notification';
+/**
+ * @document example export module
+ * export { default as moduleName } from './moduleName'
+ */
 
-function HydraxSDK(config: SDKConfig): any {
-  return {
-    getNotificationList: (
-      params?: PageInfoParams,
-      errorHandler: ErrorHandler = () => null
-    ) => queryNotificationList(config, params, errorHandler),
+import exchangeGenericSdk from './exchangeGenericSdk/index';
 
-    getCryptoAddress: (
-      errorHandler: ErrorHandler = () => null
-    ) => getCryptoAddress(config, null, errorHandler),
-
-    getBalances: (
-      errorHandler: ErrorHandler = () => null
-    ) => getBalances(config, null, errorHandler),
-    
-    getUserInfo: (
-      params?: { userInfo: string[] },
-      errorHandle?: ErrorHandler
-    ) => getUserInfo(config, params, errorHandle),
-  };
-}
-
-export default HydraxSDK;
-
-
+export default exchangeGenericSdk;
