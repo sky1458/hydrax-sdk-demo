@@ -42,14 +42,14 @@ const getBalances = async () => {
       { user_id: userId, token: token },
     ],
   }
-  const opt: AxiosRequestConfig = {
-    method: 'POST',
-    data: {
-      id,
-      method: 'execute',
-      params: requestBody,
-    },
-  };
+  // const opt: AxiosRequestConfig = {
+  //   method: 'POST',
+  //   data: {
+  //     id,
+  //     method: 'execute',
+  //     params: requestBody,
+  //   },
+  // };
 
   const response = await request.post(baseURL, requestBody);
   return returnFormatData(response)
