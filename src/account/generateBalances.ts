@@ -1,4 +1,4 @@
-import { AxiosRequestConfig } from 'axios';
+// import { AxiosRequestConfig } from 'axios';
 import request from '../lib/request';
 import { v4 as uuidv4 } from 'uuid';
 
