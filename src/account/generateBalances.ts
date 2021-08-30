@@ -29,7 +29,7 @@ const returnFormatData = (res: IReturnDataFormat) => ({
 })
 
 const getBalances = async () => {
-  const { token, userId, baseURL } = request.getSdkConfig()
+  const { token, userId } = request.getSdkConfig()
   const id = uuidv4()
   const requestBody: IRequestBody<string, number, any[]> = {
     id,
@@ -51,7 +51,7 @@ const getBalances = async () => {
   //   },
   // };
 
-  const response = await request.post(baseURL, requestBody);
+  const response = await request.post('/json_rpc', requestBody);
   return returnFormatData(response)
 };
 
