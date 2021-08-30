@@ -50,8 +50,8 @@ const generateBalances = async () => {
       'td.account',
       'get_balances',
       [],
-      { user_id: userId },
-      { user_id: userId, token: token },
+      { "user_id": userId },
+      { "user_id": userId, token: token },
     ],
   }
   // const opt: AxiosRequestConfig = {
