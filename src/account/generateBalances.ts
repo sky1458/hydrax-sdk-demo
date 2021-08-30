@@ -1,4 +1,4 @@
-import { AxiosRequestConfig } from 'axios';
+// import { AxiosRequestConfig } from 'axios';
 import request from '../lib/request';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -28,31 +28,40 @@ const returnFormatData = (res: IReturnDataFormat) => ({
   data: res?.data?.result || null,
 })
 
-const getBalances = async () => {
+const generateBalances = async () => {
   const { token, userId } = request.getSdkConfig()
   const id = uuidv4()
-  const requestBody: IRequestBody<string, number, any[]> = {
-    id,
-    method: 'execute',
-    params: [
-      'td.account',
-      'get_balances',
-      [],
-      { user_id: userId },
-      { user_id: userId, token: token },
-    ],
-  }
-  const opt: AxiosRequestConfig = {
-    method: 'POST',
-    data: {
-      id,
-      method: 'execute',
-      params: requestBody,
-    },
-  };
+  // const requestBody: IRequestBody<string, number, any[]> = {
+  //   id,
+  //   method: 'execute',
+  //   params: [
+  //     'td.account',
+  //     'get_balances',
+  //     [],
+  //     { user_id: userId },
+  //     { user_id: userId, token: token },
+  //   ],
+  // }
 
-  const response = await request.post('/json_rpc', opt);
+  const requestBody: IRequestBody<string, number, any> = [
+    'td.account',
+    'get_balances',
+    [],
+    { user_id: userId },
+    { user_id: userId, token: token },
+  ]
+
+  // const opt: AxiosRequestConfig = {
+  //   method: 'POST',
+  //   data: {
+  //     id,
+  //     method: 'execute',
+  //     params: requestBody,
+  //   },
+  // };
+
+  const response = await request.post('/json_rpc', requestBody);
   return returnFormatData(response)
 };
 
-export default getBalances
+export default generateBalances
