@@ -43,14 +43,17 @@ const generateBalances = async () => {
   //   ],
   // }
 
-  const requestBody: IRequestBody<string, number, any> = [
-    'td.account',
-    'get_balances',
-    [],
-    { user_id: userId },
-    { user_id: userId, token: token },
-  ]
-
+  const requestBody: IRequestBody<string, number, any[]> = {
+    id,
+    method: 'execute',
+    params: [
+      'td.account',
+      'get_balances',
+      [],
+      { user_id: userId },
+      { user_id: userId, token: token },
+    ],
+  }
   // const opt: AxiosRequestConfig = {
   //   method: 'POST',
   //   data: {
