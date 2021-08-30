@@ -1,4 +1,4 @@
-// import { AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig } from 'axios';
 import request from '../lib/request';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -42,16 +42,16 @@ const getBalances = async () => {
       { user_id: userId, token: token },
     ],
   }
-  // const opt: AxiosRequestConfig = {
-  //   method: 'POST',
-  //   data: {
-  //     id,
-  //     method: 'execute',
-  //     params: requestBody,
-  //   },
-  // };
+  const opt: AxiosRequestConfig = {
+    method: 'POST',
+    data: {
+      id,
+      method: 'execute',
+      params: requestBody,
+    },
+  };
 
-  const response = await request.post('/json_rpc', requestBody);
+  const response = await request.post('/json_rpc', opt);
   return returnFormatData(response)
 };
 
