@@ -2,19 +2,18 @@
 import request from '../lib/request';
 import { v4 as uuidv4 } from 'uuid';
 
-type IRequestBody<T, U, Z> = {
+type RequestBody<T, U, Z> = {
   [type: string]: T | U | Z
 }
 
-type IReturnDataFormat = {
+type ReturnDataFormat<T> = {
   data: {
     error: {
       message: string
     },
-    result: any[]
+    result: T
   }
 }
-
 
 /**
  * Returns the correct data format
@@ -22,8 +21,8 @@ type IReturnDataFormat = {
  * @param res response content
  * @returns correct data format
  */
-const returnFormatData = (res: IReturnDataFormat) => ({
-  success: Boolean(!(res?.data?.error)),
+const returnFormatData = (res: ReturnDataFormat<object[]>) => ({
+  success: Boolean(!(res?.data?.error)), // error ? 'failed' : 'success'
   message: res?.data?.error || "",
   data: res?.data?.result || null,
 })
@@ -31,19 +30,7 @@ const returnFormatData = (res: IReturnDataFormat) => ({
 const generateBalances = async () => {
   const { token, userId } = request.getSdkConfig()
   const id = uuidv4()
-  // const requestBody: IRequestBody<string, number, any[]> = {
-  //   id,
-  //   method: 'execute',
-  //   params: [
-  //     'td.account',
-  //     'get_balances',
-  //     [],
-  //     { user_id: userId },
-  //     { user_id: userId, token: token },
-  //   ],
-  // }
-
-  const requestBody: IRequestBody<string, number, any[]> = {
+  const requestBody: RequestBody<string, number, any[]> = {
     id,
     method: 'execute',
     params: [
@@ -54,16 +41,8 @@ const generateBalances = async () => {
       { "user_id": userId, token: token },
     ],
   }
-  // const opt: AxiosRequestConfig = {
-  //   method: 'POST',
-  //   data: {
-  //     id,
-  //     method: 'execute',
-  //     params: requestBody,
-  //   },
-  // };
-
   const response = await request.post('/json_rpc', requestBody);
+
   return returnFormatData(response)
 };
 

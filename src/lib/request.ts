@@ -33,7 +33,6 @@ class Axios {
 
     this.axiosClient.defaults.baseURL = baseURL;
     this.axiosClient.defaults.headers = {
-      'Content-Type': 'application/json',
       ...merge(this.axiosClient.defaults.headers, headers),
     };
     this.axiosClient.defaults = {
